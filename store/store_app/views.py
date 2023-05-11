@@ -11,3 +11,7 @@ def cart(request):
 
 def checkout(request):
     return render(request, 'store_app/checkout.html')
+
+
+def thanks(request):
+    return render(request, 'store_app/thanks_page.html')

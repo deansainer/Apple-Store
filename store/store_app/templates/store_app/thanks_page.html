@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Thank You for Your Order!</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			text-align: center;
+			padding: 50px;
+		}
+
+		h1 {
+			font-size: 36px;
+			color: #000000;
+			margin-bottom: 20px;
+		}
+
+		p {
+			font-size: 18px;
+			color: #555;
+			margin-bottom: 30px;
+		}
+
+		a {
+			color: #20c997;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+	</style>
+</head>
+<body>
+	<h1>Thank You for Your Order!</h1>
+	<p>We're excited to let you know that your order has been successfully received and is now being processed. Our team is hard at work preparing your items for shipment and ensuring that everything is just right before it's sent your way.</p>
+	<p>We want to take a moment to express our gratitude for your business. We know that you have many options when it comes to shopping online, and we're honored that you chose us. Your support means the world to us, and we're committed to providing you with the best possible shopping experience.</p>
+	<p>In the meantime, feel free to <a href="{% url 'store_page' %}">browse our website</a> for more great deals and new arrivals. And if you have any questions or concerns about your order, don't hesitate to reach out to our customer service team. We're always here to help.</p>
+	<p>Thanks again for choosing us. We can't wait to see you again soon!</p>
+    <h4>Best regards,</h4>
+    <h2>Apple Store</h2>
+</body>
+</html>
