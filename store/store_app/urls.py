@@ -10,3 +10,4 @@ urlpatterns = [
     path('thanks/', views.thanks, name='thanks_page'),
 
 ]
+
