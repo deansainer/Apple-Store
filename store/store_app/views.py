@@ -7,11 +7,13 @@ def store(request):
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer)
         items = order.orderitem_set.all()
+        cart_quantity = order.get_cart_quantity
     else:
         items = []
         order = {'get_cart_total': 0, 'get_cart_quantity': 0}
+        cart_quantity = order['get_cart_quantity']
     products = Product.objects.all()
-    context = {'products': products, 'items': items, 'order': order}
+    context = {'products': products, 'items': items, 'order': order, 'cart_quantity': cart_quantity}
     return render(request, 'store_app/store.html', context)
 
 
@@ -20,10 +22,12 @@ def cart(request):
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer)
         items = order.orderitem_set.all()
+        cart_quantity = order.get_cart_quantity
     else:
         items = []
         order = {'get_cart_total': 0, 'get_cart_quantity': 0}
-    context = {'items': items, 'order': order}
+        cart_quantity = order['get_cart_quantity']
+    context = {'items': items, 'order': order, 'cart_quantity': cart_quantity}
     return render(request, 'store_app/cart.html', context)
 
 
@@ -32,10 +36,12 @@ def checkout(request):
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer)
         items = order.orderitem_set.all()
+        cart_quantity = order.get_cart_quantity
     else:
         items = []
         order = {'get_cart_total': 0, 'get_cart_quantity': 0}
-    context = {'items': items, 'order': order}
+        cart_quantity = order['get_cart_quantity']
+    context = {'items': items, 'order': order, 'cart_quantity': cart_quantity}
     return render(request, 'store_app/checkout.html', context)
 
 
