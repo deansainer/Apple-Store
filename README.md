@@ -2,8 +2,10 @@ Welcome to the (unfinished) Apple Store E-commerce Platform (unfinished). This D
 
 
 Store Page:
-![1](https://github.com/deansainer/apple-store/assets/109224340/2f875caa-e16b-40a3-a214-ce4b212b4fc3)
+![1](https://github.com/deansainer/apple-store/assets/109224340/890e1c84-71c6-4938-be15-30c86d2bee26)
+
 
 Cart Page:
-![2](https://github.com/deansainer/apple-store/assets/109224340/343ea33e-18e9-44ec-8856-fc51e144b3d0)
+![2](https://github.com/deansainer/apple-store/assets/109224340/6d4b5130-17a9-4462-90c9-4181a7483696)
+
 
