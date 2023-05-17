@@ -332,7 +332,9 @@ th {
 label {
   display: inline-block;
 }
-
+.add_to_cart{
+  margin-left: 60px;
+}
 button {
   border-radius: 0;
 }
