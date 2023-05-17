@@ -1,4 +1,4 @@
-Welcome to the (unfinished) Apple Store E-commerce Platform (unfinished). This Django-based project provides a platform for selling Apple products online. With this application, customers can browse a wide range of Apple devices, add them to their shopping cart, and complete the purchase process seamlessly.
+Welcome to the Apple Store E-commerce web page (unfinished). This Django-based project provides a platform for selling Apple products online. With this application, customers can browse a wide range of Apple devices, add them to their shopping cart, and complete the purchase process seamlessly.
 
 
 Store Page:
