@@ -302,6 +302,7 @@ svg {
 }
 
 table {
+
   caption-side: bottom;
   border-collapse: collapse;
 }
@@ -1668,7 +1669,23 @@ progress {
   .offset-xl-7 {
     margin-left: 58.33333333%;
   }
-
+.change-quantity{
+  margin-left: 5px;
+  width: 12px;
+  cursor: pointer;
+  display: block;
+  margin-top: 4px;
+  transition:.1s;
+}
+.change-quantity:hover{
+  opacity: .6;
+}
+.checkout{
+  margin-left: 25%;
+}
+.quantity{
+  margin-top: 5px;
+}
   .offset-xl-8 {
     margin-left: 66.66666667%;
   }
@@ -1957,6 +1974,12 @@ progress {
 .gy-xxl-5 {
     --bs-gutter-y: 3rem;
   }
+}
+.ordered_list{
+  margin-left: 0%;
+}
+.confirm{
+  margin-left: 680px;
 }
 .table {
   --bs-table-bg: transparent;

@@ -1,4 +1,5 @@
 {% extends 'store_app/main.html' %}
+{% load static %}
 {% block header %}
 <html lang="en">
 <head>
@@ -34,7 +35,15 @@
               </div>
               <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
 
-                <p class="lead fw-normal mb-2">Amount: {{item.quantity}}</p>
+                <p class="quantity">{{item.quantity}}</p>
+						<div class="quantity">
+                          <div class="arrow">
+							<img data-product="{{item.product.id}}" data-action="add" class="change-quantity update-cart" src="{% static  'images/arrow-up.png' %}">
+                            </div>
+                          <div class="arrow">
+							<img data-product="{{item.product.id}}" data-action="remove" class="change-quantity update-cart" src="{% static  'images/arrow-down.png' %}">
+                          </div>
+						</div>
 
                 <button class="btn btn-link px-2"
                   onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
@@ -45,7 +54,7 @@
                 <h5 class="mb-0">Total:   ${{ item.get_item_total}}</h5>
               </div>
               <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                <a href="delete" class="text-dark"><i class="bi bi-trash"></i></a>
+                                <a href="info"><img src="{% static 'images/info.png' %}" width="30px" height="30px"></a>
                             </div>
             </div>
           </div>
