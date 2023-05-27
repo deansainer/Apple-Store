@@ -17,6 +17,10 @@ urlpatterns = [
     path('thanks/', views.thanks, name='thanks_page'),
     path('update_item/', views.updateItem, name='update_item'),
     path('api/', include(router.urls)),
+    path('iphone/', views.iphones, name='iphone'),
+    path('mac/', views.macs, name='mac'),
+    path('ipad/', views.ipads, name='ipad'),
+    path('airpods/', views.airpods, name='airpods'),
 
 ]
 

@@ -7,7 +7,19 @@ class Customer(models.Model):
     name = models.CharField(max_length=255, null=True)
     email = models.CharField(max_length=255, null=True)
 
-    def __str__(self):
+    def str(self):
+        return self.name
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    image = models.ImageField(null=True, blank=True)
+    slug = models.CharField(null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+    def str(self):
         return self.name
 
 
@@ -17,8 +29,9 @@ class Product(models.Model):
     image = models.ImageField(null=True, blank=True)
     color = models.CharField(max_length=25, null=True, blank=True)
     release_year = models.IntegerField(null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
-    def __str__(self):
+    def str(self):
         return self.name
 
 
@@ -39,7 +52,7 @@ class Order(models.Model):
         cart_quantity = sum([item.quantity for item in orderitems])
         return cart_quantity
 
-    def __str__(self):
+    def str(self):
         return str(self.id)
 
 
@@ -64,5 +77,5 @@ class ShippingAddress(models.Model):
     zip_code = models.CharField(max_length=255, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
+    def str(self):
         return self.address

@@ -17,8 +17,8 @@ def store(request):
         items = []
         order = {'get_cart_total': 0, 'get_cart_quantity': 0}
         cart_quantity = order['get_cart_quantity']
-    products = Product.objects.all()
-    context = {'products': products, 'items': items, 'order': order, 'cart_quantity': cart_quantity}
+    categories = Category.objects.all()
+    context = {'categories': categories, 'items': items, 'order': order, 'cart_quantity': cart_quantity}
     return render(request, 'store_app/store.html', context)
 
 
@@ -34,6 +34,65 @@ def cart(request):
         cart_quantity = order['get_cart_quantity']
     context = {'items': items, 'order': order, 'cart_quantity': cart_quantity}
     return render(request, 'store_app/cart.html', context)
+
+def iphones(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer)
+        items = order.orderitem_set.all()
+        cart_quantity = order.get_cart_quantity
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_quantity': 0}
+        cart_quantity = order['get_cart_quantity']
+    products = Product.objects.all().filter(category=1)
+    context = {'products': products, 'items': items, 'order': order, 'cart_quantity': cart_quantity}
+    return render(request, 'store_app/iphone.html', context)
+
+
+def macs(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer)
+        items = order.orderitem_set.all()
+        cart_quantity = order.get_cart_quantity
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_quantity': 0}
+        cart_quantity = order['get_cart_quantity']
+    products = Product.objects.all().filter(category=2)
+    context = {'products': products, 'items': items, 'order': order, 'cart_quantity': cart_quantity}
+    return render(request, 'store_app/mac.html', context)
+
+def ipads(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer)
+        items = order.orderitem_set.all()
+        cart_quantity = order.get_cart_quantity
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_quantity': 0}
+        cart_quantity = order['get_cart_quantity']
+    products = Product.objects.all().filter(category=4)
+    context = {'products': products, 'items': items, 'order': order, 'cart_quantity': cart_quantity}
+    return render(request, 'store_app/ipad.html', context)
+
+def airpods(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer)
+        items = order.orderitem_set.all()
+        cart_quantity = order.get_cart_quantity
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_quantity': 0}
+        cart_quantity = order['get_cart_quantity']
+    products = Product.objects.all().filter(category=5)
+    context = {'products': products, 'items': items, 'order': order, 'cart_quantity': cart_quantity}
+    return render(request, 'store_app/airpods.html', context)
+
+
 
 def checkout(request):
     if request.user.is_authenticated:
@@ -91,3 +150,4 @@ class OrderItemViewSet(ModelViewSet):
 class CustomerViewSet(ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
+
