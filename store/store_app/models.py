@@ -7,7 +7,7 @@ class Customer(models.Model):
     name = models.CharField(max_length=255, null=True)
     email = models.CharField(max_length=255, null=True)
 
-    def str(self):
+    def __str__(self):
         return self.name
 
 
@@ -19,7 +19,7 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
 
-    def str(self):
+    def __str__(self):
         return self.name
 
 
@@ -31,7 +31,7 @@ class Product(models.Model):
     release_year = models.IntegerField(null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
-    def str(self):
+    def __str__(self):
         return self.name
 
 
@@ -53,7 +53,7 @@ class Order(models.Model):
         cart_quantity = sum([item.quantity for item in orderitems])
         return cart_quantity
 
-    def str(self):
+    def __str__(self):
         return str(self.id)
 
 
@@ -69,6 +69,7 @@ class OrderItem(models.Model):
         return item_total
 
 
+
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
@@ -78,5 +79,5 @@ class ShippingAddress(models.Model):
     zip_code = models.CharField(max_length=255, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
-    def str(self):
-        return self.address
+    def __str__(self):
+        return f'{str(self.id)}. {self.address}, {self.city}'

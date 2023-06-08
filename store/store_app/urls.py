@@ -22,5 +22,6 @@ urlpatterns = [
     path('ipad/', views.ipads, name='ipad'),
     path('airpods/', views.airpods, name='airpods'),
 
+
 ]
 

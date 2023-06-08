@@ -10,57 +10,13 @@
 
 
 {% block body %}
-<div class="container mt-5 px-5 checkout">
-    <div class="mb-4">
-        <h2>Confirm order and pay.</h2>
-    </div>
-    <div class="row">
-        <div class="col-md-8">
-
-            <div class="card p-3">
-                <h6 class="text-uppercase">Payment details</h6>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="inputbox mt-3 mr-2"><input type="text" name="name" class="form-control"
-                                                               required="required"> <i class="fa fa-credit-card"></i>
-                            <span>Name</span>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="inputbox mt-3 mr-2"><input type="text" name="name" class="form-control"
-                                                               required="required"> <i class="fa fa-credit-card"></i>
-                            <span>Email</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-4 mb-4">
-                    <h6 class="text-uppercase">Billing Address</h6>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <div class="inputbox mt-3 mr-2"><input type="text" name="name" class="form-control"
-                                                                   required="required"> <span>Street Address</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="inputbox mt-3 mr-2"><input type="text" name="name" class="form-control"
-                                                                   required="required"> <span>City</span></div>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-6">
-                            <div class="inputbox mt-3 mr-2"><input type="text" name="name" class="form-control"
-                                                                   required="required"> <span>State/Province</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="inputbox mt-3 mr-2"><input type="text" name="name" class="form-control"
-                                                                   required="required"> <span>Zip code</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
+<form method="POST" class="my-form">
+  {% csrf_token %}
+  {{ form.as_p }}
+    <div class="mt-4 mb-4 d-flex justify-content-between confirm">
+  <button class=" btn btn-outline-dark mt-auto" type="submit">Submit</button>
+        </div>
+</form>
 
 
         <div class="ordered_list">
@@ -81,7 +37,7 @@
   {% for item in items %}
     <tr>
 
-      <td><img src="{{item.product.image.url}}" width="40px" height="40px" </td>
+      <td><img src="{{item.product.image.url}}" width="40px" height="40px"> </td>
         <td>{{item.product.name}}</td>
       <td>{{item.quantity}}</td>
         <td>{{item.product.color}}</td>
@@ -92,13 +48,9 @@
   </tbody>
 </table>
             </div>
-            <div class="mt-4 mb-4 d-flex justify-content-between confirm">
-                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'thanks_page' %}">Confirm
-                    order</a></div>
-
-            </div>
 
     </div>
 </div>
     </div>
+
 {% endblock %}

@@ -1,7 +1,8 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework.viewsets import ModelViewSet
 from .serializers import *
+from .forms import *
 
 from .models import *
 from django.http import JsonResponse
@@ -93,6 +94,15 @@ def airpods(request):
     return render(request, 'store_app/airpods.html', context)
 
 
+def confirm_order(request):
+    if request.method == 'POST':
+        form = ShippingAddressForm(request.POST)
+        if form.is_valid():
+            form.save()  # Save the form data to the model
+            return redirect('success')  # Redirect to a success page
+    else:
+        form = ShippingAddressForm()
+    return render(request, 'store_app/thanks.html', {'form': form})
 
 def checkout(request):
     if request.user.is_authenticated:
@@ -100,13 +110,19 @@ def checkout(request):
         order, created = Order.objects.get_or_create(customer=customer)
         items = order.orderitem_set.all()
         cart_quantity = order.get_cart_quantity
+        if request.method == 'POST':
+            form = ShippingAddressForm(request.POST)
+            if form.is_valid():
+                form.save()  # Save the form data to the model
+                return redirect('http://127.0.0.1:8000/thanks/')  # Redirect to a success page
+        else:
+            form = ShippingAddressForm()
     else:
         items = []
         order = {'get_cart_total': 0, 'get_cart_quantity': 0}
         cart_quantity = order['get_cart_quantity']
-    context = {'items': items, 'order': order, 'cart_quantity': cart_quantity}
+    context = {'items': items, 'order': order, 'cart_quantity': cart_quantity, 'form': form}
     return render(request, 'store_app/checkout.html', context)
-
 
 def thanks(request):
     return render(request, 'store_app/thanks_page.html')
