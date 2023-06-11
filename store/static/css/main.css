@@ -1976,11 +1976,9 @@ progress {
   }
 }
 
-.ordered_list{
-  margin-left: 0%;
-}
+
 .confirm{
-  margin-left: 680px;
+  margin-left: 55px;
 }
 .table {
   --bs-table-bg: transparent;
@@ -5089,7 +5087,23 @@ textarea.form-control-lg {
   margin-bottom: 0;
   border-radius: 0.25rem;
 }
+.checkout_container {
+  display: flex;
+  margin-top: 5%;
+}
 
+.shipping_form{
+  flex: 1;
+  margin-left: 30%;
+
+}
+
+.ordered_list{
+  width: 35%;
+  flex: 1;
+  margin-right: 30%;
+  margin-top: 10px;
+}
 .list-group-numbered {
   list-style-type: none;
   counter-reset: section;

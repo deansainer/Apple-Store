@@ -10,47 +10,48 @@
 
 
 {% block body %}
-<form method="POST" class="my-form">
-  {% csrf_token %}
-  {{ form.as_p }}
-    <div class="mt-4 mb-4 d-flex justify-content-between confirm">
-  <button class=" btn btn-outline-dark mt-auto" type="submit">Submit</button>
-        </div>
-</form>
-
-
-        <div class="ordered_list">
-                     <h4>List of ordered items for ${{order.get_cart_total|floatformat:2}}</h4>
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Image</th>
-        <th scope="col">Product name</th>
-      <th scope="col">Quantity</th>
-        <th scope="col">Color</th>
-        <th scope="col">Release year</th>
-        <th scope="col">Item total</th>
-    </tr>
-  </thead>
-
-  <tbody>
-  {% for item in items %}
-    <tr>
-
-      <td><img src="{{item.product.image.url}}" width="40px" height="40px"> </td>
-        <td>{{item.product.name}}</td>
-      <td>{{item.quantity}}</td>
-        <td>{{item.product.color}}</td>
-        <td>{{item.product.release_year}}</td>
-        <td>${{ item.get_item_total}}</td>
-        {% endfor %}
-    </tr>
-  </tbody>
-</table>
+<div class="checkout_container">
+    <div class="shipping_form">
+        <form method="POST" class="my-form" style="width: 200px; margin-left: 40px">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="mt-4 mb-4 d-flex justify-content-between confirm">
+                <button class=" btn btn-outline-dark mt-auto" type="submit">Submit</button>
             </div>
+        </form>
+    </div>
 
+
+    <div class="ordered_list">
+        <h4>List of ordered items for ${{order.get_cart_total|floatformat:2}}</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Product name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Color</th>
+                <th scope="col">Release year</th>
+                <th scope="col">Item total</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for item in items %}
+            <tr>
+
+                <td><img src="{{item.product.image.url}}" width="40px" height="40px"></td>
+                <td>{{item.product.name}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.product.color}}</td>
+                <td>{{item.product.release_year}}</td>
+                <td>${{ item.get_item_total}}</td>
+                {% endfor %}
+            </tr>
+            </tbody>
+        </table>
     </div>
+
 </div>
-    </div>
 
 {% endblock %}
