@@ -1,0 +1,55 @@
+{% extends 'store_app/main.html' %}
+
+{% block header %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product info</title>
+</head>
+{% endblock %}
+
+{% block body %}
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-4">
+                <div class="card text-black">
+                    <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
+                    <div class="image_info">
+                        <img src="{{product.image.url}}" class="card-img-top">
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5 class="card-title">{{product.name}}</h5><br>
+                        </div>
+                        <div>
+                            {{product.description}}
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <span>Release year</span><span>{{product.release_year}}</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Color</span><span>{{product.color}}</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Category</span><span>{{product.category}}</span>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                            <span>Price</span><span>${{product.price}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="add_to_cart">
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent" style="margin-left: 43%; margin-top: 20px">
+                    <button data-product={{product.id}} data-action="add"
+                            class="btn btn-outline-dark mt-auto update-cart">Add to cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

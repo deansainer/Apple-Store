@@ -14,7 +14,7 @@ class Customer(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(null=True, blank=True)
-    slug = models.CharField(null=True, blank=True)
+    slug = models.CharField(null=True, blank=True, default='no_slug')
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -30,6 +30,8 @@ class Product(models.Model):
     color = models.CharField(max_length=25, null=True, blank=True)
     release_year = models.IntegerField(null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    slug = models.CharField(max_length=155, default='no_slug', null=True, blank=True)
+    description = models.TextField(max_length=555, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -69,10 +71,9 @@ class OrderItem(models.Model):
         return item_total
 
 
-
 class ShippingAddress(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=False, null=True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=False, null=True)
     address = models.CharField(max_length=255, null=True)
     state = models.CharField(max_length=255, null=True)
     city = models.CharField(max_length=255, null=True)

@@ -21,6 +21,7 @@ urlpatterns = [
     path('mac/', views.macs, name='mac'),
     path('ipad/', views.ipads, name='ipad'),
     path('airpods/', views.airpods, name='airpods'),
+    path('product_info/<str:slug>/', views.product_info, name='product_info')
 
 
 ]

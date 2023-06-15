@@ -43,7 +43,8 @@
                             <!-- Product actions-->
                             <div class="add_to_cart">
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <button data-product={{product.id}} data-action="add" class="btn btn-outline-dark mt-auto update-cart">Add to cart</button>
+                                <button data-product={{product.id}} data-action="add" class="btn btn-outline-dark mt-auto update-cart"><img width="25" height="25" src="https://cdn4.iconfinder.com/data/icons/e-commerce-586/512/Add_to_Cart-64.png" alt="buttonpng" border="0" /></button>
+                                <a href="{% url 'product_info' product.slug %}" class="button btn btn-outline-dark mt-auto"><img width="25" height="25" src="https://img.icons8.com/metro/26/info.png"></a>
                             </div>
                                 </div>
                         </div>

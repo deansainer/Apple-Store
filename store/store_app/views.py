@@ -36,6 +36,7 @@ def cart(request):
     context = {'items': items, 'order': order, 'cart_quantity': cart_quantity}
     return render(request, 'store_app/cart.html', context)
 
+
 def iphones(request):
     if request.user.is_authenticated:
         customer = request.user.customer
@@ -65,6 +66,7 @@ def macs(request):
     context = {'products': products, 'items': items, 'order': order, 'cart_quantity': cart_quantity}
     return render(request, 'store_app/mac.html', context)
 
+
 def ipads(request):
     if request.user.is_authenticated:
         customer = request.user.customer
@@ -78,6 +80,7 @@ def ipads(request):
     products = Product.objects.all().filter(category=4)
     context = {'products': products, 'items': items, 'order': order, 'cart_quantity': cart_quantity}
     return render(request, 'store_app/ipad.html', context)
+
 
 def airpods(request):
     if request.user.is_authenticated:
@@ -98,11 +101,12 @@ def confirm_order(request):
     if request.method == 'POST':
         form = ShippingAddressForm(request.POST)
         if form.is_valid():
-            form.save()  # Save the form data to the model
-            return redirect('success')  # Redirect to a success page
+            form.save()
+            return redirect('success')
     else:
         form = ShippingAddressForm()
     return render(request, 'store_app/thanks.html', {'form': form})
+
 
 def checkout(request):
     if request.user.is_authenticated:
@@ -113,8 +117,8 @@ def checkout(request):
         if request.method == 'POST':
             form = ShippingAddressForm(request.POST)
             if form.is_valid():
-                form.save()  # Save the form data to the model
-                return redirect('http://127.0.0.1:8000/thanks/')  # Redirect to a success page
+                form.save()
+                return redirect('http://127.0.0.1:8000/thanks/')
         else:
             form = ShippingAddressForm()
     else:
@@ -123,6 +127,7 @@ def checkout(request):
         cart_quantity = order['get_cart_quantity']
     context = {'items': items, 'order': order, 'cart_quantity': cart_quantity, 'form': form}
     return render(request, 'store_app/checkout.html', context)
+
 
 def thanks(request):
     return render(request, 'store_app/thanks_page.html')
@@ -152,6 +157,19 @@ def updateItem(request):
 
     return JsonResponse('Item was added', safe=False)
 
+def product_info(request, slug):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer)
+        items = order.orderitem_set.all()
+        cart_quantity = order.get_cart_quantity
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_quantity': 0}
+        cart_quantity = order['get_cart_quantity']
+    product = Product.objects.get(slug=slug)
+    context = {'items': items, 'order': order, 'cart_quantity': cart_quantity, 'product': product}
+    return render(request, 'store_app/product_info.html', context)
 
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
@@ -166,4 +184,3 @@ class OrderItemViewSet(ModelViewSet):
 class CustomerViewSet(ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
-
