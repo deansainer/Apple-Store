@@ -28,11 +28,14 @@ def cart(request):
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer)
         items = order.orderitem_set.all()
+        if 'sort_by_price' in request.POST:
+            items = order.orderitem_set.select_related('product').order_by('product__price')
         cart_quantity = order.get_cart_quantity
     else:
         items = []
         order = {'get_cart_total': 0, 'get_cart_quantity': 0}
         cart_quantity = order['get_cart_quantity']
+
     context = {'items': items, 'order': order, 'cart_quantity': cart_quantity}
     return render(request, 'store_app/cart.html', context)
 
